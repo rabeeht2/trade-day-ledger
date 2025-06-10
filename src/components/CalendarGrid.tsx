@@ -58,26 +58,26 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ trades, onDateClick }) => {
   return (
     <div className="w-full">
       {/* Month header */}
-      <div className="text-center mb-4">
-        <h3 className="text-lg font-semibold text-primary">
+      <div className="text-center mb-2">
+        <h3 className="text-base font-semibold text-primary">
           {monthNames[currentMonth]} {currentYear}
         </h3>
       </div>
 
       {/* Day names header */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      <div className="grid grid-cols-7 gap-0.5 mb-1">
         {dayNames.map(day => (
-          <div key={day} className="text-center text-xs font-medium text-muted-foreground p-1">
+          <div key={day} className="text-center text-xs font-medium text-muted-foreground py-1">
             {day}
           </div>
         ))}
       </div>
 
       {/* Calendar grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-0.5">
         {calendarDates.map((day, index) => {
           if (day === null) {
-            return <div key={index} className="aspect-square" />;
+            return <div key={index} className="h-12" />;
           }
 
           const dayPL = getDayPL(day);
@@ -90,14 +90,14 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ trades, onDateClick }) => {
             <button
               key={day}
               onClick={() => onDateClick(formatDate(day))}
-              className={`aspect-square p-1 rounded-lg border transition-all duration-200 hover:shadow-md ${
+              className={`h-12 p-1 rounded border transition-all duration-200 hover:shadow-md ${
                 isToday 
                   ? 'border-primary bg-primary/10' 
                   : 'border-border bg-background hover:bg-accent'
               } ${tradeCount > 0 ? 'cursor-pointer' : 'cursor-default'}`}
             >
               <div className="h-full flex flex-col items-center justify-center">
-                <div className={`text-sm font-medium ${
+                <div className={`text-xs font-medium ${
                   isToday ? 'text-primary' : 'text-foreground'
                 }`}>
                   {day}
@@ -109,7 +109,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ trades, onDateClick }) => {
                     }`}>
                       {dayPL >= 0 ? '+' : ''}${Math.abs(dayPL).toFixed(0)}
                     </div>
-                    <div className="w-1 h-1 rounded-full bg-primary mt-0.5" />
+                    <div className="w-1 h-1 rounded-full bg-primary" />
                   </>
                 )}
               </div>

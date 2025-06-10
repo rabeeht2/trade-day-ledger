@@ -68,24 +68,24 @@ const Index = () => {
   const totalPL = calculateTotalPL();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4">
-      <div className="max-w-md mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
+      <div className="max-w-md mx-auto space-y-3">
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <BarChart3 className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-primary">P&L Tracker</h1>
+            <BarChart3 className="h-6 w-6 text-primary" />
+            <h1 className="text-xl font-bold text-primary">P&L Tracker</h1>
           </div>
           
           {/* Total P&L Display */}
-          <div className="bg-white rounded-xl shadow-sm border p-6">
+          <div className="bg-white rounded-lg shadow-sm border p-4">
             <div className="text-sm text-muted-foreground mb-1">Total P&L</div>
-            <div className={`text-3xl font-bold ${
+            <div className={`text-2xl font-bold ${
               totalPL >= 0 ? 'text-green-600' : 'text-red-600'
             }`}>
               {totalPL >= 0 ? '+' : ''}${totalPL.toFixed(2)}
             </div>
-            <div className="flex items-center justify-center mt-2">
+            <div className="flex items-center justify-center mt-1">
               {totalPL >= 0 ? (
                 <TrendingUp className="h-4 w-4 text-green-600" />
               ) : (
@@ -96,10 +96,10 @@ const Index = () => {
         </div>
 
         {/* Calendar Grid */}
-        <div className="bg-white rounded-xl shadow-sm border p-4">
-          <div className="flex items-center gap-2 mb-4">
-            <Calendar className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold">Trading Calendar</h2>
+        <div className="bg-white rounded-lg shadow-sm border p-3">
+          <div className="flex items-center gap-2 mb-2">
+            <Calendar className="h-4 w-4 text-primary" />
+            <h2 className="text-base font-semibold">Trading Calendar</h2>
           </div>
           <CalendarGrid trades={trades} onDateClick={handleDateClick} />
         </div>
@@ -108,13 +108,13 @@ const Index = () => {
         <StatsCards trades={trades} />
 
         {/* Add Trade Button */}
-        <div className="fixed bottom-6 right-6">
+        <div className="fixed bottom-4 right-4">
           <Button
             onClick={() => setIsAddModalOpen(true)}
             size="lg"
-            className="rounded-full shadow-lg h-14 w-14 p-0 bg-primary hover:bg-primary/90"
+            className="rounded-full shadow-lg h-12 w-12 p-0 bg-primary hover:bg-primary/90"
           >
-            <Plus className="h-6 w-6" />
+            <Plus className="h-5 w-5" />
           </Button>
         </div>
 

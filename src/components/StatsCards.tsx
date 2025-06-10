@@ -51,19 +51,19 @@ const StatsCards: React.FC<StatsCardsProps> = ({ trades }) => {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-2 gap-2">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
-          <div key={index} className="bg-white rounded-xl shadow-sm border p-4">
-            <div className={`inline-flex p-2 rounded-lg ${stat.bgColor} mb-2`}>
-              <Icon className={`h-4 w-4 ${stat.color}`} />
+          <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
+            <div className={`inline-flex p-1.5 rounded-md ${stat.bgColor} mb-1`}>
+              <Icon className={`h-3 w-3 ${stat.color}`} />
             </div>
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <div className="text-xs text-muted-foreground font-medium">
                 {stat.title}
               </div>
-              <div className={`text-lg font-bold ${stat.color}`}>
+              <div className={`text-sm font-bold ${stat.color}`}>
                 {stat.value}
               </div>
             </div>
