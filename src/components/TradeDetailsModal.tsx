@@ -80,9 +80,9 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md mx-4 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-[95%] max-w-2xl mx-auto max-h-[90vh] overflow-y-auto rounded-xl">
         <DialogHeader>
-          <DialogTitle className="text-center">
+          <DialogTitle className="text-center text-lg">
             {formatDate(date)}
           </DialogTitle>
           <div className="text-center">
@@ -104,46 +104,49 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({
             </div>
           ) : (
             trades.map((trade) => (
-              <div key={trade.id} className="border rounded-lg p-3 space-y-3">
+              <div key={trade.id} className="border rounded-xl p-4 space-y-3">
                 {editingTrade?.id === trade.id ? (
-                  // Edit mode
+                  // Edit mode - Horizontal Layout
                   <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <Label htmlFor="edit-amount">Amount ($)</Label>
+                        <Label htmlFor="edit-amount" className="text-center block">Amount ($)</Label>
                         <Input
                           id="edit-amount"
                           type="number"
                           step="0.01"
                           value={editAmount}
                           onChange={(e) => setEditAmount(e.target.value)}
+                          className="text-center"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="edit-time">Time</Label>
+                        <Label htmlFor="edit-time" className="text-center block">Time</Label>
                         <Input
                           id="edit-time"
                           type="time"
                           value={editTime}
                           onChange={(e) => setEditTime(e.target.value)}
+                          className="text-center"
                         />
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="edit-note">Note</Label>
+                      <Label htmlFor="edit-note" className="text-center block">Note</Label>
                       <Textarea
                         id="edit-note"
                         value={editNote}
                         onChange={(e) => setEditNote(e.target.value)}
                         rows={2}
+                        className="text-center"
                       />
                     </div>
-                    <div className="flex gap-2">
-                      <Button onClick={saveEdit} size="sm" className="flex-1">
+                    <div className="grid grid-cols-2 gap-3">
+                      <Button onClick={saveEdit} size="sm" className="rounded-lg">
                         <Save className="h-4 w-4 mr-1" />
                         Save
                       </Button>
-                      <Button onClick={cancelEdit} variant="outline" size="sm" className="flex-1">
+                      <Button onClick={cancelEdit} variant="outline" size="sm" className="rounded-lg">
                         <X className="h-4 w-4 mr-1" />
                         Cancel
                       </Button>
@@ -171,17 +174,17 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({
                     </div>
 
                     {trade.note && (
-                      <div className="text-sm text-muted-foreground bg-muted p-2 rounded">
+                      <div className="text-sm text-muted-foreground bg-muted p-3 rounded-lg text-center">
                         {trade.note}
                       </div>
                     )}
 
-                    <div className="flex gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       <Button
                         onClick={() => startEdit(trade)}
                         variant="outline"
                         size="sm"
-                        className="flex-1"
+                        className="rounded-lg"
                       >
                         <Edit className="h-4 w-4 mr-1" />
                         Edit
@@ -189,12 +192,12 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({
                       
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="destructive" size="sm" className="flex-1">
+                          <Button variant="destructive" size="sm" className="rounded-lg">
                             <Trash2 className="h-4 w-4 mr-1" />
                             Delete
                           </Button>
                         </AlertDialogTrigger>
-                        <AlertDialogContent>
+                        <AlertDialogContent className="rounded-xl">
                           <AlertDialogHeader>
                             <AlertDialogTitle>Delete Trade</AlertDialogTitle>
                             <AlertDialogDescription>
@@ -202,10 +205,10 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogCancel className="rounded-lg">Cancel</AlertDialogCancel>
                             <AlertDialogAction
                               onClick={() => onDeleteTrade(trade.id)}
-                              className="bg-destructive text-destructive-foreground"
+                              className="bg-destructive text-destructive-foreground rounded-lg"
                             >
                               Delete
                             </AlertDialogAction>
